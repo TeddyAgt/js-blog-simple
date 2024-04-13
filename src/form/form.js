@@ -4,9 +4,13 @@ import "./form.scss";
 const form = document.querySelector("form");
 const errorElement = document.querySelector("#errors");
 const url = "https://restapi.fr/api/tedarticles";
+const cancelBtn = document.querySelector("#cancel-btn");
+
 let errors = [];
 
 form.addEventListener("submit", handleSubmit);
+
+cancelBtn.addEventListener("click", () => location.assign("/index.html"));
 
 async function handleSubmit(event) {
   event.preventDefault();
@@ -35,8 +39,9 @@ async function handleSubmit(event) {
         },
       });
 
-      const body = await response.json();
-      console.log(body);
+      if (response.status < 299) {
+        location.assign("/index.html");
+      }
     } catch (error) {
       console.log(error);
     }
@@ -44,6 +49,7 @@ async function handleSubmit(event) {
 }
 
 function isFormValid(article) {
+  errors = [];
   if (
     !article.author ||
     !article.title ||
