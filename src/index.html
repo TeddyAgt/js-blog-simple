@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200..1000;1,200..1000&display=swap"
+      rel="stylesheet"
+    />
+    <script
+      src="https://kit.fontawesome.com/c685d2b770.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <title>Blog | Accueil</title>
+  </head>
+  <body>
+    <div class="grid-container">
+      <!-- HEADER -->
+      <header class="header" role="banner">
+        <a class="header__logo" href="./index.html">Mon Blog</a>
+        <nav
+          class="main-navigation"
+          role="navigation"
+          aria-label="Navigation principale"
+        >
+          <button
+            class="main-navigation__toggler-btn"
+            aria-label="Ouvrir le menu de navigation"
+            aria-controls="navigation-links"
+            aria-expanded="false"
+          >
+            <i class="fa-solid fa-bars"></i>
+          </button>
+          <ul id="navigation-links">
+            <li>
+              <a
+                href="./index.html"
+                class="main-navigation__link main-navigation__link--active"
+                >Accueil</a
+              >
+            </li>
+            <li>
+              <a href="./form/form.html" class="main-navigation__link"
+                >Écrire un article</a
+              >
+            </li>
+          </ul>
+        </nav>
+      </header>
+      <main role="main">
+        <section
+          class="articles-container"
+          role="region"
+          aria-label="Liste des articles du blog"
+        >
+          <article class="article">
+            <img
+              class="article__image"
+              src="https://images.unsplash.com/photo-1574158622682-e40e69881006?q=80&w=2080&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+              alt="Portrait de l'auteur"
+            />
+            <h2 class="article__title">Titre de l'article</h2>
+            <p class="article__author">Cosmo</p>
+            <p class="article__content">
+              Le chat domestique mâle est couramment appelé un « chat » tandis
+              que la femelle est appelée « chatte » et le jeune un « chaton ».
+              Le mot chat vient du bas latin cattus, qui, d’après le Littré
+              (édition de 1878), provient du verbe cattare, qui signifie
+              guetter, ce félin étant alors considéré comme un chasseur qui
+              guette sa proie. Cette interprétation porte cependant à
+              controverse, au vu des termes utilisés dans certaines langues
+              afro-asiatiques (berbère kadiska) ou nilo-sahariennes (nubien
+              kadis). En latin classique, « chat » se dit felis (d’où, en
+              français, félin, félidés, etc.), mais désigne uniquement le chat
+              sauvage d’Europe, tandis que cattus s’applique au chat domestique.
+            </p>
+            <div class="article__buttons-container">
+              <button class="btn btn--primary">Modifier</button>
+              <button class="btn btn--danger">Supprimer</button>
+            </div>
+          </article>
+        </section>
+      </main>
+      <footer role="contentinfo">
+        <p>&copy; Teddy Aboim | 2023</p>
+      </footer>
+    </div>
+    <script type="module" src="./index.js"></script>
+    <script src="./assets/scripts/topbar.js"></script>
+  </body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200..1000;1,200..1000&display=swap"
+      rel="stylesheet"
+    />
+    <script
+      src="https://kit.fontawesome.com/c685d2b770.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <title>Blog | Écrire un article</title>
+  </head>
+  <body>
+    <div class="grid-container">
+      <!-- HEADER -->
+      <header class="header" role="banner">
+        <a class="header__logo" href="../index.html">Mon Blog</a>
+        <nav
+          class="main-navigation"
+          role="navigation"
+          aria-label="Navigation principale"
+        >
+          <button
+            class="main-navigation__toggler-btn"
+            aria-label="Ouvrir le menu de navigation"
+            aria-controls="navigation-links"
+            aria-expanded="false"
+          >
+            <i class="fa-solid fa-bars"></i>
+          </button>
+          <ul id="navigation-links">
+            <li>
+              <a href="../index.html" class="main-navigation__link">Accueil</a>
+            </li>
+            <li>
+              <a
+                href="./form.html"
+                class="main-navigation__link main-navigation__link--active"
+                >Écrire un article</a
+              >
+            </li>
+          </ul>
+        </nav>
+      </header>
+
+      <!-- MAIN -->
+      <main role="main">
+        <!-- FORM -->
+        <form role="form" aria-labelledby="#write-article">
+          <h2 class="title title--underline" id="write-article">
+            Ajouter un article
+          </h2>
+          <div class="input-group">
+            <label for="author">Auteur</label>
+            <input type="text" name="author" id="author" />
+          </div>
+          <div class="input-group">
+            <label for="title">Titre</label>
+            <input type="text" name="title" id="title" />
+          </div>
+          <div class="input-group">
+            <label for="picture">Photo de profil</label>
+            <input type="text" name="picture" id="picture" />
+          </div>
+          <div class="input-group">
+            <label for="category">Catégorie</label>
+            <input type="text" name="category" id="category" />
+          </div>
+          <div class="input-group">
+            <label for="content">Article</label>
+            <textarea name="content" id="content"></textarea>
+          </div>
+          <ul class="text--error" id="errors"></ul>
+          <div class="buttons-group">
+            <button class="btn btn--secondary" type="button">Annuler</button>
+            <button class="btn btn--primary" type="submit">Valider</button>
+          </div>
+        </form>
+      </main>
+
+      <!-- FOOTER -->
+      <footer role="contentinfo"><p>&copy; Teddy Aboim | 2023</p></footer>
+    </div>
+    <script type="module" src="./form.js"></script>
+    <script src="../assets/scripts/topbar.js"></script>
+  </body>
+</html>
