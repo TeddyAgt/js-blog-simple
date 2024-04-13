@@ -1,5 +1,6 @@
 import "./assets/styles/styles.scss";
 import "./index.scss";
+import { openModal } from "./assets/scripts/modal";
 
 const articlesContainer = document.querySelector(".articles-container");
 const url = "https://restapi.fr/api/tedarticles";
@@ -42,7 +43,14 @@ function populateArticlesSection() {
   articlesContainer.append(...articlesDOM);
   const deleteButtons = document.querySelectorAll(".delete-btn");
   deleteButtons.forEach((button) =>
-    button.addEventListener("click", deleteArticle)
+    button.addEventListener("click", async (event) => {
+      const confirmation = await openModal(
+        "Êtes-vous sûr de vouloir supprimer votre article ?"
+      );
+      if (confirmation) {
+        deleteArticle(event);
+      }
+    })
   );
   const editButtons = document.querySelectorAll(".edit-btn");
   editButtons.forEach((button) =>
@@ -129,7 +137,6 @@ function createLiElem(category) {
 }
 
 async function deleteArticle(e) {
-  console.log("in here");
   const id = e.target.dataset.id;
   const response = await fetch(`${url}/${id}`, { method: "DELETE" });
   fetchArticles();

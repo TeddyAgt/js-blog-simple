@@ -1,3 +1,4 @@
+import { openModal } from "../assets/scripts/modal";
 import "../assets/styles/styles.scss";
 import "./form.scss";
 
@@ -36,7 +37,12 @@ let errors = [];
 
 form.addEventListener("submit", handleSubmit);
 
-cancelBtn.addEventListener("click", () => location.assign("/index.html"));
+cancelBtn.addEventListener("click", async () => {
+  const confirmation = await openModal(
+    "Êtes-vous sûr de vouloir abandonner vos modifications ?"
+  );
+  if (confirmation) location.assign("/index.html");
+});
 
 async function handleSubmit(event) {
   event.preventDefault();
