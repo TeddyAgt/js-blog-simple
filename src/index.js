@@ -2,16 +2,20 @@ import "./assets/styles/styles.scss";
 import "./index.scss";
 
 const articlesContainer = document.querySelector(".articles-container");
-const url = "https://restapi.fr/api/tedarticles/";
+const url = "https://restapi.fr/api/tedarticles";
 const categoriesContainer = document.querySelector(".categories-list");
+const sortSelect = document.querySelector("#sorting-select");
 
 let articles;
 let liElements;
 let filter;
+let sortBy = "desc";
+
+sortSelect.addEventListener("change", sortArticles);
 
 async function fetchArticles() {
   try {
-    const response = await fetch(url, {
+    const response = await fetch(`${url}?sort=createdAt:${sortBy}`, {
       method: "GET", // GET = Méthode par défaut, pas besoin de la préciser
     });
     articles = await response.json();
@@ -104,6 +108,9 @@ function generateCategoriesArray(articles) {
 function createLiElem(category) {
   const liElem = document.createElement("li");
   liElem.innerHTML = `${category[0]} (<strong>${category[1]}</strong>)`;
+  if (category[0] === filter) {
+    liElem.classList.add("category--active");
+  }
   liElem.addEventListener("click", () => {
     if (filter === category[0]) {
       liElem.classList.remove("category--active");
@@ -124,13 +131,18 @@ function createLiElem(category) {
 async function deleteArticle(e) {
   console.log("in here");
   const id = e.target.dataset.id;
-  const response = await fetch(`${url}${id}`, { method: "DELETE" });
+  const response = await fetch(`${url}/${id}`, { method: "DELETE" });
   fetchArticles();
 }
 
 function redirectToForm(e) {
   console.log("in here");
   location.assign(`/form/form.html?id=${e.target.dataset.id}`);
+}
+
+function sortArticles() {
+  sortBy = sortSelect.value;
+  fetchArticles();
 }
 
 fetchArticles();
