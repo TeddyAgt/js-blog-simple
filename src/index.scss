@@ -3,13 +3,40 @@
 main {
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
+  padding-top: 5rem;
+}
+
+.side-navigation {
+  flex: 0 0 250px;
+  padding: 0 2rem 2rem 2rem;
+}
+
+.categories-list {
+  padding: 2rem;
+  background: #fff;
+  border-radius: 4px;
+  box-shadow: var(--box-shadow);
+
+  li {
+    margin: 1rem;
+    cursor: pointer;
+
+    &:hover {
+      color: var(--primary-dark);
+    }
+
+    &.category--active {
+      color: var(--primary-dark);
+      font-weight: 700;
+    }
+  }
 }
 
 .articles-container {
   max-width: 800px;
-  width: 100%;
-  margin: 5rem 0 10rem 0;
+  flex: 1;
+  margin: 0 0 10rem 0;
 }
 
 .article {

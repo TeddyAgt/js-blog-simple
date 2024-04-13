@@ -3,8 +3,34 @@ import "./form.scss";
 
 const form = document.querySelector("form");
 const errorElement = document.querySelector("#errors");
-const url = "https://restapi.fr/api/tedarticles";
+const url = "https://restapi.fr/api/tedarticles/";
 const cancelBtn = document.querySelector("#cancel-btn");
+let articleId;
+
+async function initForm() {
+  articleId = new URL(location).searchParams.get("id");
+  if (articleId) {
+    const response = await fetch(`${url}${articleId}`);
+    if (response.status < 299) {
+      const article = await response.json();
+      fillForm(article);
+    }
+  }
+}
+initForm();
+
+function fillForm(article) {
+  const author = document.querySelector("#author");
+  const title = document.querySelector("#title");
+  const picture = document.querySelector("#picture");
+  const category = document.querySelector("#category");
+  const content = document.querySelector("#content");
+  author.value = article.author || "";
+  title.value = article.title || "";
+  picture.value = article.picture || "";
+  category.value = article.category || "";
+  content.value = article.content || "";
+}
 
 let errors = [];
 
@@ -31,13 +57,24 @@ async function handleSubmit(event) {
   if (isFormValid(article)) {
     try {
       const jsonArticle = JSON.stringify(article);
-      const response = await fetch(url, {
-        method: "POST",
-        body: jsonArticle,
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      let response;
+      if (articleId) {
+        response = await fetch(`${url}${articleId}`, {
+          method: "PATCH",
+          body: jsonArticle,
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+      } else {
+        response = await fetch(url, {
+          method: "POST",
+          body: jsonArticle,
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+      }
 
       if (response.status < 299) {
         location.assign("/index.html");
